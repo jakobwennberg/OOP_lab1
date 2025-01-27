@@ -10,7 +10,7 @@ public class Saab95 extends Car {
        super(2, 125, Color.RED);
        turboOn = false;
    }
-  
+  // Specifika funktioner för saab
    public void setTurboOn() {
        turboOn = true;
    }
@@ -19,7 +19,7 @@ public class Saab95 extends Car {
    public void setTurboOff() {
        turboOn = false;
    }
-  
+     // Overridar speedfactorn som va abstrakt i Car klassen
    @Override
    public double speedFactor() {
        double turbo = turboOn ? 1.3 : 1;

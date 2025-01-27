@@ -2,7 +2,7 @@
 import java.awt.*;
 
 public abstract class Car implements Movable {
-   // Fucking gemensamma attribut
+   // Gemensamma attribut som alla i Car obj måste ha
    private int nrDoors;
    private double enginePower;
    private double currentSpeed;
@@ -24,7 +24,7 @@ public abstract class Car implements Movable {
        return x;
    }
 
-
+   // Vanliga getters som i python
    public double getY() {
        return y;
    }
@@ -64,12 +64,12 @@ public abstract class Car implements Movable {
        return color;
    }
 
-
+   // Metod som alla bilar delar
    public void setColor(Color color) {
        this.color = color;
    }
 
-
+   // Abstrakt metod som måste implementeras i subklasser
    public abstract double speedFactor();
 
 
@@ -85,7 +85,7 @@ public abstract class Car implements Movable {
        }
    }
 
-
+   // Här overridar vi från interfacet movable. Switch är som if elif i python
    @Override
    public void move() {
        switch (direction) {
