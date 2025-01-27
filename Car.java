@@ -68,21 +68,29 @@ public abstract class Car implements Movable {
        if (amount < 0 || amount > 1) {
            throw new IllegalArgumentException("Amount must be in [0, 1]");
        }
-       double newSpeed = this.currentSpeed + speedFactor() * amount; // Calc new speed
-       // Assign the new speed if it does not exceed the engine-power
-       this.currentSpeed = Math.min(newSpeed, this.enginePower); // Cap the speed
+       // Calc new speed, speed can never exceed enginePower
+       this.currentSpeed = Math.min(this.getCurrentSpeed() + this.speedFactor() * amount, this.getEnginePower());
    }
+
+
+    public void brake(double amount) {
+        if (amount < 0 || amount > 1) {
+            throw new IllegalArgumentException("Amount must be in [0, 1]");
+        }
+        // Calc new speed, speed can never go below 0
+        this.currentSpeed = Math.max(this.getCurrentSpeed() - this.speedFactor() * amount, 0);
+    }
 
    // Override from movable
    @Override
    public void move() {
-       if (this.direction == 0) { // Uppåt
+       if (this.direction == 0) { // forward
            this.y += getCurrentSpeed();
-       } else if (this.direction == 90) { // Höger
+       } else if (this.direction == 90) { // right
            this.x += getCurrentSpeed();
-       } else if (this.direction == 180) { // Neråt
+       } else if (this.direction == 180) { // backward
            this.y -= getCurrentSpeed();
-       } else if (this.direction == 270) { // Vänster
+       } else if (this.direction == 270) { // left
            this.x -= getCurrentSpeed();
        }
    }
@@ -102,8 +110,4 @@ public abstract class Car implements Movable {
     // abstract method to be implemented in subclass
     public abstract double speedFactor();
 }
-
-
-
-
 
