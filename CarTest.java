@@ -1,6 +1,7 @@
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
+
 public class CarTest {
     // JUnit letar efter @test
     // Vi kan också använda @BeforeEach där vi kör en setup med ett objekt (volvo) istället för att initiera det varenda gång

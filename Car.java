@@ -1,126 +1,106 @@
-
 import java.awt.*;
 
+
 public abstract class Car implements Movable {
-   // Gemensamma attribut som alla i Car obj måste ha
-   private int nrDoors;
-   private double enginePower;
+   private final int nrDoors;
+   private final double enginePower;
    private double currentSpeed;
    private Color color;
-   private double x = 0; // Bilens position på x-axeln
-   private double y = 0; // Bilens position på y-axeln
-   private int direction = 0; // 0: Upp, 90: Höger, 180: Ner, 270: Vänster
+   private double x = 0; // cars x pos
+   private double y = 0; // cars y pos
+   private int direction = 0; // 0: forward, 90: right, 180: backward, 270: left
   
-   // Konstruktor för att göra dessa attribut eller vafan man säger
+   // Constructor
    public Car(int nrDoors, double enginePower, Color color) {
        this.nrDoors = nrDoors;
        this.enginePower = enginePower;
        this.currentSpeed = 0;
        this.color = color;
 
-
    }
+
+   // Getters
    public double getX() {
-       return x;
+       return this.x;
    }
 
-   // Vanliga getters som i python
    public double getY() {
-       return y;
+       return this.y;
    }
-
 
    public int getDirection() {
-       return direction;
+       return this.direction;
    }
-
-
-   public void startEngine() {
-       currentSpeed = 0.1;
-   }
-
-
-   public void stopEngine() {
-       currentSpeed = 0;
-   }
-
 
    public int getNrDoors() {
-       return nrDoors;
+       return this.nrDoors;
    }
-
 
    public double getEnginePower() {
-       return enginePower;
+       return this.enginePower;
    }
-
 
    public double getCurrentSpeed() {
-       return currentSpeed;
+       return this.currentSpeed;
    }
-
 
    public Color getColor() {
-       return color;
+       return this.color;
    }
 
-   // Metod som alla bilar delar
+   // Setter
    public void setColor(Color color) {
        this.color = color;
    }
 
-   // Abstrakt metod som måste implementeras i subklasser
-   public abstract double speedFactor();
+
+   public void startEngine() {
+       this.currentSpeed = 0.1;
+   }
+
+
+   public void stopEngine() {
+       this.currentSpeed = 0;
+   }
 
 
    public void gas(double amount) {
        if (amount < 0 || amount > 1) {
            throw new IllegalArgumentException("Amount must be in [0, 1]");
        }
-       double newSpeed = currentSpeed + speedFactor() * amount; // Räkna ny speed
-       if (newSpeed > enginePower) { // Kolla om nya speeden går över motorkraften
-           currentSpeed = enginePower; // Capa speeden
-       } else {
-           currentSpeed = newSpeed; // Annars så assignar vi nya speeden
-       }
+       double newSpeed = this.currentSpeed + speedFactor() * amount; // Calc new speed
+       // Assign the new speed if it does not exceed the engine-power
+       this.currentSpeed = Math.min(newSpeed, this.enginePower); // Cap the speed
    }
 
-   // Här overridar vi från interfacet movable. Switch är som if elif i python
+   // Override from movable
    @Override
    public void move() {
-       switch (direction) {
-           case 0: // Uppåt
-               y += getCurrentSpeed();
-               break;
-           case 90: // Höger
-               x += getCurrentSpeed();
-               break;
-           case 180: // Neråt
-               y -= getCurrentSpeed();
-               break;
-           case 270: // Vänster
-               x -= getCurrentSpeed();
-               break;
+       if (this.direction == 0) { // Uppåt
+           this.y += getCurrentSpeed();
+       } else if (this.direction == 90) { // Höger
+           this.x += getCurrentSpeed();
+       } else if (this.direction == 180) { // Neråt
+           this.y -= getCurrentSpeed();
+       } else if (this.direction == 270) { // Vänster
+           this.x -= getCurrentSpeed();
        }
    }
 
-
+   // Override from movable
    @Override
    public void turnLeft() {
-       direction = (direction + 270) % 360; // Lägg till 270 istället för att subtrahera 90 för att undvika negativa värden
+       this.direction = (this.direction + 270) % 360; // add 270, instead of -90, to avoid negative values
    }
 
-
+   // Override from movable
    @Override
    public void turnRight() {
-       direction = (direction + 90) % 360;
+       this.direction = (this.direction + 90) % 360;
    }
 
-
-
-
-
-
+    // abstract method to be implemented in subclass
+    public abstract double speedFactor();
 }
 
 
