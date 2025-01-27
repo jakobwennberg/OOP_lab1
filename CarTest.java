@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class CarTest {
     @Test
     void testCarMovement() {
-        Car volvo = new Volvo240();
+        Volvo240 volvo = new Volvo240();
         volvo.startEngine();
         volvo.move();
         // testing if they are the same (expected, actual, delta)
@@ -14,7 +14,8 @@ public class CarTest {
 
     @Test
     void testGas() {
-        Car saab = new Saab95();
+        Saab95 saab = new Saab95();
+        saab.setTurboOn();
         saab.startEngine();
         saab.gas(0.5);
         assertTrue(saab.getCurrentSpeed() > 0.1);
@@ -22,7 +23,7 @@ public class CarTest {
 
     @Test
     void testTurn() {
-        Car volvo = new Volvo240();
+        Volvo240 volvo = new Volvo240();
         volvo.turnRight();
         assertEquals(90, volvo.getDirection());
         volvo.turnLeft();

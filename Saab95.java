@@ -22,9 +22,9 @@ public class Saab95 extends Car {
 
     // Override speedFactor from parent
     @Override
-    public double speedFactor() {
+    protected double speedFactor() {
         double turbo = this.turboOn ? 1.3 : 1;
-        return turbo * 0.01 * getEnginePower();
+        return turbo * 0.01 * this.getEnginePower();
     }
 }
 

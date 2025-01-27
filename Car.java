@@ -12,7 +12,7 @@ public abstract class Car implements Movable {
     private int direction = 0; // 0: forward, 90: right, 180: backward, 270: left
 
     // Constructor
-    public Car(int nrDoors, double enginePower, Color color, String model) {
+    protected Car(int nrDoors, double enginePower, Color color, String model) {
         this.nrDoors = nrDoors;
         this.enginePower = enginePower;
         this.color = color;
@@ -21,50 +21,49 @@ public abstract class Car implements Movable {
     }
 
     // Getters
-    public double getX() {
+    protected double getX() {
         return this.x;
     }
 
-    public double getY() {
+    protected double getY() {
         return this.y;
     }
 
-    public int getDirection() {
+    protected int getDirection() {
         return this.direction;
     }
 
-    public int getNrDoors() {
+    protected int getNrDoors() {
         return this.nrDoors;
     }
 
-    public double getEnginePower() {
+    protected double getEnginePower() {
         return this.enginePower;
     }
 
-    public double getCurrentSpeed() {
+    protected double getCurrentSpeed() {
         return this.currentSpeed;
     }
 
-    public Color getColor() {
+    protected Color getColor() {
         return this.color;
     }
 
-    public String getModelName() {
+    protected String getModelName() {
         return this.modelName;
     }
 
-
-    public void startEngine() {
+    protected void startEngine() {
         this.currentSpeed = 0.1;
     }
 
 
-    public void stopEngine() {
+    protected void stopEngine() {
         this.currentSpeed = 0;
     }
 
 
-    public void gas(double amount) {
+    protected void gas(double amount) {
         if (amount < 0 || amount > 1) {
             throw new IllegalArgumentException("Amount must be in [0, 1]");
         }
@@ -73,7 +72,7 @@ public abstract class Car implements Movable {
     }
 
 
-    public void brake(double amount) {
+    protected void brake(double amount) {
         if (amount < 0 || amount > 1) {
             throw new IllegalArgumentException("Amount must be in [0, 1]");
         }
@@ -108,6 +107,6 @@ public abstract class Car implements Movable {
     }
 
     // abstract method to be implemented in subclass
-    public abstract double speedFactor();
+    protected abstract double speedFactor();
 }
 
