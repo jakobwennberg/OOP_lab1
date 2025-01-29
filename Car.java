@@ -37,11 +37,11 @@ public abstract class Car implements Movable {
         return this.nrDoors;
     }
 
-    protected double getEnginePower() {
+    public double getEnginePower() {
         return this.enginePower;
     }
 
-    protected double getCurrentSpeed() {
+    public double getCurrentSpeed() {
         return this.currentSpeed;
     }
 
