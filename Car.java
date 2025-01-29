@@ -63,7 +63,7 @@ public abstract class Car implements Movable {
     }
 
 
-    protected void gas(double amount) {
+    public void gas(double amount) {
         if (amount < 0 || amount > 1) {
             throw new IllegalArgumentException("Amount must be in [0, 1]");
         }
@@ -72,7 +72,7 @@ public abstract class Car implements Movable {
     }
 
 
-    protected void brake(double amount) {
+    public void brake(double amount) {
         if (amount < 0 || amount > 1) {
             throw new IllegalArgumentException("Amount must be in [0, 1]");
         }
