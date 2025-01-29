@@ -11,12 +11,12 @@ public class Saab95 extends Car {
     }
 
     // Specific functions for SAAB
-    protected void setTurboOn() {
+    public void setTurboOn() {
         this.turboOn = true;
     }
 
 
-    protected void setTurboOff() {
+    public void setTurboOff() {
         this.turboOn = false;
     }
 
