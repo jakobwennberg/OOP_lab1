@@ -6,7 +6,7 @@ public class Volvo240 extends Car {
 
 
     public Volvo240() {
-        super(4, 100, Color.BLACK, "Volvo240");
+        super(4, 100, Color.BLACK, "Volvo240", 3.0);
     }
 
     // Override speedFactor from parent

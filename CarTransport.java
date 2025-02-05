@@ -7,11 +7,12 @@ public class CarTransport extends Car {
     private boolean rampUp;
     private Deque<Car> cars;
     // private double lenOfCar;
-    private final static int MAX_CARS = 5;
+    private final static int MAX_CARS = 6;
     private final static double LOADING_DISTANCE = 1.0;
+    private final static double MAX_LENGTH = 3.2;
 
     public CarTransport() {
-        super(2, 500, Color.BLACK, "CarTransport");
+        super(2, 500, Color.BLACK, "CarTransport", 20.0);
         this.rampUp = true;
         this.cars = new ArrayDeque<>();
     }
@@ -45,7 +46,7 @@ public class CarTransport extends Car {
     }
 
     public void loadCar(Car car) {
-        if (!rampUp && cars.size() < MAX_CARS && getCurrentSpeed() == 0 && car.getCurrentSpeed() == 0 && !cars.contains(car) && !(car instanceof CarTransport) && isNearby(car)) {
+        if (!rampUp && cars.size() < MAX_CARS && getCurrentSpeed() == 0 && car.getCurrentSpeed() == 0 && !cars.contains(car) && !(car instanceof CarTransport) && isNearby(car) && car.getLength() <= MAX_LENGTH) {
             cars.push(car);
             car.setX(getX());  // Set initial position
             car.setY(getY());

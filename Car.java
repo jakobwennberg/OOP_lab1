@@ -6,17 +6,19 @@ public abstract class Car implements Movable {
     private final int nrDoors;
     private final double enginePower;
     private final Color color;
+    private final double length;
     private double currentSpeed;
     private double x = 0; // cars x pos
     private double y = 0; // cars y pos
     private int direction = 0; // 0: forward, 90: right, 180: backward, 270: left
 
     // Constructor
-    protected Car(int nrDoors, double enginePower, Color color, String model) {
+    protected Car(int nrDoors, double enginePower, Color color, String model, double length) {
         this.nrDoors = nrDoors;
         this.enginePower = enginePower;
         this.color = color;
         this.modelName = model;
+        this.length = length;
         this.stopEngine();
     }
 
@@ -51,6 +53,10 @@ public abstract class Car implements Movable {
 
     protected String getModelName() {
         return this.modelName;
+    }
+
+    protected double getLength() {
+        return this.length;
     }
 
     protected void startEngine() {

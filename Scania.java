@@ -6,7 +6,7 @@ public class Scania extends Car {
     private final static double MIN_ANGLE = 0;
 
     public Scania() {
-        super(2, 400, Color.BLUE, "Scania");
+        super(2, 400, Color.BLUE, "Scania", 15.0);
         this.platformBody = 0;
         
     }
