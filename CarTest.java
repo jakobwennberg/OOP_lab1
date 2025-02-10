@@ -8,6 +8,9 @@ public class CarTest {
     private Saab95 saab;
     private Scania scania;
     private CarTransport carTransport;
+    private CarGarage<Volvo240> volvo240Garage;
+    private CarGarage<Saab95> saab95Garage;
+    private CarGarage<Car> Garage;
 
     @BeforeEach
     void setUp() {
@@ -15,6 +18,9 @@ public class CarTest {
         saab = new Saab95();
         scania = new Scania();
         carTransport = new CarTransport();
+        volvo240Garage = new CarGarage<>(4);
+        saab95Garage = new CarGarage<>(4);
+        Garage = new CarGarage<>(8);
     }
 
     @Test
@@ -134,5 +140,34 @@ public class CarTest {
         carTransport.unloadCar();
         assertEquals(0, carTransport.getNumberOfCars());
     }
+    @Test
+    void testAmountOfCars() {
+        volvo240Garage.leaveCar(volvo);
+        assertEquals(1, volvo240Garage.getCurrentCars());
+        volvo240Garage.leaveCar(new Volvo240());
+        assertEquals(2, volvo240Garage.getCurrentCars());
+
+        //saab95Garage.leaveCar(saab);
+        //Garage.leaveCar(volvo);
+        //Garage.leaveCar(saab);
+    }
+
+    @Test
+    void testCorrectCarType() {
+        saab95Garage.leaveCar(saab);    //OK
+        Garage.leaveCar(new Volvo240());//OK
+        Garage.leaveCar(new Saab95());  //OK
+        //saab95Garage.leaveCar(volvo);   //INTE OK
+    }
+
+    @Test
+    void testGarageMaxCapacity() {
+        volvo240Garage.leaveCar(new Volvo240());
+        volvo240Garage.leaveCar(new Volvo240());
+        volvo240Garage.leaveCar(new Volvo240());
+        volvo240Garage.leaveCar(new Volvo240());
+        assertThrows(IllegalStateException.class, () -> volvo240Garage.leaveCar(new Volvo240()));
+    }
+
 }
 
