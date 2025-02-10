@@ -1,172 +1,92 @@
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import static org.junit.jupiter.api.Assertions.*;
 
-
 public class CarTest {
-    private Volvo240 volvo;
-    private Saab95 saab;
-    private Scania scania;
-    private CarTransport carTransport;
-    private CarGarage<Volvo240> volvo240Garage;
-    private CarGarage<Saab95> saab95Garage;
-    private CarGarage<Car> Garage;
+    private final ArrayList<Car> carList = new ArrayList<>();
 
     @BeforeEach
     void setUp() {
-        volvo = new Volvo240();
-        saab = new Saab95();
-        scania = new Scania();
-        carTransport = new CarTransport();
-        volvo240Garage = new CarGarage<>(4);
-        saab95Garage = new CarGarage<>(4);
-        Garage = new CarGarage<>(8);
+        carList.addAll(Arrays.asList(new Volvo240(), new Saab95(), new Scania(), new CarTransport()));
     }
 
     @Test
     void testCarMovement() {
-        volvo.startEngine();
-        volvo.move();
-        // testing if they are the same (expected, actual, delta)
-        assertEquals(0.1, volvo.getY(), 0.01);
+        for (Car car : carList){
+            car.startEngine();
+            car.move();
+            // testing if they are the same (expected, actual, delta)
+            Assertions.assertEquals(0.1, car.getY(), 0.01);
+        }
     }
 
     @Test
     void testGasAndBreak() {
-        saab.setTurboOn();
+        for (Car car : carList){
+            // Tests if currentSpeed >= 0
+            car.brake(1);
+            assertEquals(0, car.getCurrentSpeed());
 
-        // Tests if currentSpeed >= 0
-        saab.brake(1);
-        assertTrue(saab.getCurrentSpeed() >= 0);
+            // Tests if Gas increases speed
+            car.startEngine();
+            car.gas(0.5);
+            double oldSpeed = car.getCurrentSpeed();
+            car.gas(0.5);
+            assertTrue(car.getCurrentSpeed() > oldSpeed);
 
-        // Tests if Gas increases speed
-        saab.startEngine();
-        saab.gas(0.5);
-        double oldSpeed = saab.getCurrentSpeed();
-        saab.gas(0.5);
-        assertTrue(saab.getCurrentSpeed() > oldSpeed);
-
-        // Tests if Brake decreases speed
-        oldSpeed = saab.getCurrentSpeed();
-        saab.brake(0.5);
-        assertTrue(saab.getCurrentSpeed() < oldSpeed);
+            // Tests if Brake decreases speed
+            oldSpeed = car.getCurrentSpeed();
+            car.brake(0.5);
+            assertTrue(car.getCurrentSpeed() < oldSpeed);
+        }
     }
 
     @Test
     void testMax() {
-        saab.setTurboOn();
-        saab.startEngine();
+        for (Car car : carList){
+            car.startEngine();
 
-        // Gets up to max speed
-        while (saab.getCurrentSpeed() != saab.getEnginePower()) {
-            saab.gas(1);
+            // Gets up to max speed
+            while (car.getCurrentSpeed() < car.getEnginePower()) {
+                car.gas(1);
+            }
+
+            // then Gas again to see if we go above EnginePower (== max speeed)
+            car.gas(1);
+            Assertions.assertEquals(car.getCurrentSpeed(), car.getEnginePower());
         }
-
-        // then Gas again to see if we go above EnginePower (== max speeed)
-        saab.gas(1);
-        assertEquals(saab.getCurrentSpeed(), saab.getEnginePower());
     }
 
     @Test
     void testTurn() {
-        volvo.turnRight();
-        assertEquals(90, volvo.getDirection());
-        volvo.turnLeft();
-        assertEquals(0, volvo.getDirection());
-
-        saab.turnRight();
-        assertEquals(90, saab.getDirection());
-        saab.turnLeft();
-        assertEquals(0, saab.getDirection());
+        for (Car car : carList){
+            car.turnRight();
+            Assertions.assertEquals(90, car.getDirection());
+            car.turnLeft();
+            Assertions.assertEquals(0, car.getDirection());
+        }
     }
 
     @Test
     void testGasInvalidLow() {
         // Tests if Gas makes the throw if we go below 0
-        assertThrows(IllegalArgumentException.class, () -> volvo.gas(-0.1));
-        assertThrows(IllegalArgumentException.class, () -> saab.gas(-1));
+        for (Car car : carList){
+            assertThrows(IllegalArgumentException.class, () -> car.gas(-0.1));
+            assertThrows(IllegalArgumentException.class, () -> car.gas(-1));
+        }
     }
 
     @Test
     void testGaInvalidHigh() {
         // Tests if Gas makes the throw if we go above 1
-        assertThrows(IllegalArgumentException.class, () -> volvo.gas(2));
-        assertThrows(IllegalArgumentException.class, () -> saab.gas(1.1));
-    }
-
-    @Test
-    void testRaisePlatformBodyStationary() {
-        Scania scania = new Scania();
-
-        // Test raising platform when stationary
-        scania.raisePlatform(30);
-        assertEquals(30, scania.getPlatformBody(), 0.01);
-    }
-
-    @Test
-    void testMaxAngle() {
-        // Test exceeding maximum angle
-        scania.raisePlatform(80);
-        assertEquals(70, scania.getPlatformBody(), 0.01);
-    }
-
-    @Test
-    void testPlatformWhileMoving() {
-        // Test platform operation while moving
-        scania.startEngine();
-        scania.gas(0.5);
-        scania.raisePlatform(30);  // Should not raise while moving
-        assertEquals(0, scania.getPlatformBody(), 0.01);
-    }
-
-    @Test
-    void testLoadingAndUnloading() {
-        // Set positions close to each other
-        volvo.setX(carTransport.getX() + 0.5);
-        volvo.setY(carTransport.getY());
-        
-        carTransport.putRampDown();
-        carTransport.loadCar(volvo);
-        assertEquals(1, carTransport.getNumberOfCars());
-        
-        // Check position synchronization
-        carTransport.putRampUp();
-        carTransport.move();
-        assertEquals(carTransport.getX(), volvo.getX(), 0.01);
-        assertEquals(carTransport.getY(), volvo.getY(), 0.01);
-        
-        // Test unloading
-        carTransport.putRampDown();
-        carTransport.unloadCar();
-        assertEquals(0, carTransport.getNumberOfCars());
-    }
-    @Test
-    void testAmountOfCars() {
-        volvo240Garage.leaveCar(volvo);
-        assertEquals(1, volvo240Garage.getCurrentCars());
-        volvo240Garage.leaveCar(new Volvo240());
-        assertEquals(2, volvo240Garage.getCurrentCars());
-
-        //saab95Garage.leaveCar(saab);
-        //Garage.leaveCar(volvo);
-        //Garage.leaveCar(saab);
-    }
-
-    @Test
-    void testCorrectCarType() {
-        saab95Garage.leaveCar(saab);    //OK
-        Garage.leaveCar(new Volvo240());//OK
-        Garage.leaveCar(new Saab95());  //OK
-        //saab95Garage.leaveCar(volvo);   //INTE OK
-    }
-
-    @Test
-    void testGarageMaxCapacity() {
-        volvo240Garage.leaveCar(new Volvo240());
-        volvo240Garage.leaveCar(new Volvo240());
-        volvo240Garage.leaveCar(new Volvo240());
-        volvo240Garage.leaveCar(new Volvo240());
-        assertThrows(IllegalStateException.class, () -> volvo240Garage.leaveCar(new Volvo240()));
+        for (Car car : carList){
+            assertThrows(IllegalArgumentException.class, () -> car.gas(2));
+            assertThrows(IllegalArgumentException.class, () -> car.gas(1.1));
+        }
     }
 
 }

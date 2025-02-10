@@ -7,8 +7,8 @@ public class Mechanic<CarType extends Car> {
 
 
     public Mechanic(int maxCars, String franchise){
-        this.MAX_CARS = maxCars;
-        this.FRANCHISE = franchise;
+        MAX_CARS = maxCars;
+        FRANCHISE = franchise;
     }
 
 

@@ -6,15 +6,19 @@ import java.util.Deque;
 public class CarTransport extends Car {
     private boolean rampUp;
     private Deque<Car> cars;
-    // private double lenOfCar;
-    private final static int MAX_CARS = 6;
-    private final static double LOADING_DISTANCE = 1.0;
-    private final static double MAX_LENGTH = 3.2;
+    // lenOfLoadedCars and MAX_LENGTH means that the deck can be full even though MAX_CARS is not yet reached
+    private double lenOfLoadedCars = 0;
+    private final int MAX_CARS;
+    private final double LOADING_DISTANCE;
+    private final double MAX_LENGTH;
 
     public CarTransport() {
         super(2, 500, Color.BLACK, "CarTransport", 20.0);
-        this.rampUp = true;
-        this.cars = new ArrayDeque<>();
+        MAX_CARS = 6;
+        LOADING_DISTANCE = 1.0;
+        MAX_LENGTH = 14;
+        rampUp = true;
+        cars = new ArrayDeque<>();
     }
 
     public boolean getRampUp() {
@@ -32,6 +36,8 @@ public class CarTransport extends Car {
     public void putRampDown() {
         if (getCurrentSpeed() == 0) {
             rampUp = false;
+        } else {
+            System.out.println("Be stationary before putting the ramp down");
         }
     }
 
@@ -46,7 +52,8 @@ public class CarTransport extends Car {
     }
 
     public void loadCar(Car car) {
-        if (!rampUp && cars.size() < MAX_CARS && getCurrentSpeed() == 0 && car.getCurrentSpeed() == 0 && !cars.contains(car) && !(car instanceof CarTransport) && isNearby(car) && car.getLength() <= MAX_LENGTH) {
+        if (!rampUp && cars.size() < MAX_CARS && getCurrentSpeed() == 0 && car.getCurrentSpeed() == 0 && !cars.contains(car) && !(car instanceof CarTransport) && isNearby(car) && lenOfLoadedCars <= MAX_LENGTH) {
+            lenOfLoadedCars += car.getLength();
             cars.push(car);
             car.setX(getX());  // Set initial position
             car.setY(getY());
@@ -56,6 +63,7 @@ public class CarTransport extends Car {
     public void unloadCar() {
         if (!rampUp && getCurrentSpeed() == 0 && !cars.isEmpty()) {
             Car car = cars.pop(); // LIFO
+            lenOfLoadedCars -= car.getLength();
 
             switch (getDirection()) {
                 case 0: // forward
@@ -75,6 +83,8 @@ public class CarTransport extends Car {
                     car.setY(getY());
                     break;
             }
+        } else {
+            System.out.println("The deck is empty, no cars to unload");
         }
     }
 
@@ -82,6 +92,8 @@ public class CarTransport extends Car {
     public void gas(double amount) {
         if (rampUp) {
             super.gas(amount);
+        } else {
+            System.out.println("Put the ramp up before moving");
         }
     }
 
@@ -89,6 +101,8 @@ public class CarTransport extends Car {
     public void startEngine() {
         if (rampUp) {
             super.startEngine();
+        } else {
+            System.out.println("Put the ramp up before moving");
         }
     }
 
@@ -106,8 +120,9 @@ public class CarTransport extends Car {
                 car.setX(getX());
                 car.setY(getY());
             }
+        } else {
+            System.out.println("Put the ramp up before moving");
         }
+
     }
 }
-
-// Add len of car to car class and then update every other class. Then update Transport so that it only adds cars a certain length??
