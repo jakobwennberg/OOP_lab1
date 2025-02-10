@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class MechanicTest {
+public class CarGarageTest {
     private Volvo240 volvo;
     private Saab95 saab;
     private CarGarage<Volvo240> volvo240Garage;
