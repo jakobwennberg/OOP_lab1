@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 public class CarGarage<T extends Car> { // Specifikt vad T är bestäms då vi specifierar den statiska typen (???)
-                                    // för ett nytt garage. Till exempel Garage<Volvol240> volvoGarage = new Garage<>(5)
+                                    // för ett nytt garage. Till exempel CarGarage<Volvol240> volvoGarage = new CarGarage<>(5)
     private final int maxCapacity;
     private final ArrayList<T> cars; // Endast bilar av typen T.
 
