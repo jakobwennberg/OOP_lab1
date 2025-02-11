@@ -52,7 +52,7 @@ public class CarTransport extends Car {
     }
 
     public void loadCar(Car car) {
-        if (!rampUp && cars.size() < MAX_CARS && getCurrentSpeed() == 0 && car.getCurrentSpeed() == 0 && !cars.contains(car) && !(car instanceof CarTransport) && isNearby(car) && lenOfLoadedCars <= MAX_LENGTH) {
+        if (!rampUp && cars.size() < MAX_CARS && getCurrentSpeed() == 0 && car.getCurrentSpeed() == 0 && !cars.contains(car) && !(car instanceof CarTransport) && isNearby(car) && lenOfLoadedCars + car.getLength() <= MAX_LENGTH) {
             lenOfLoadedCars += car.getLength();
             cars.push(car);
             car.setX(getX());  // Set initial position
