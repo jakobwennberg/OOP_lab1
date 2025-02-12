@@ -13,15 +13,15 @@ public class ScaniaTest {
     @Test
     void testRaisePlatformBodyStationary() {
         // Test raising platform when stationary
-        scania.raisePlatform(30);
-        Assertions.assertEquals(30, scania.getPlatformBody(), 0.01);
+        scania.raiseRamp(30);
+        Assertions.assertEquals(30, scania.getRampPos(), 0.01);
     }
 
     @Test
     void testMaxAngle() {
         // Test exceeding maximum angle
-        scania.raisePlatform(80);
-        Assertions.assertEquals(70, scania.getPlatformBody(), 0.01);
+        scania.raiseRamp(80);
+        Assertions.assertEquals(70, scania.getRampPos(), 0.01);
     }
 
     @Test
@@ -29,8 +29,8 @@ public class ScaniaTest {
         // Test platform operation while moving
         scania.startEngine();
         scania.gas(0.5);
-        scania.raisePlatform(30);  // Should not raise while moving
-        Assertions.assertEquals(0, scania.getPlatformBody(), 0.01);
+        scania.raiseRamp(30);  // Should not raise while moving
+        Assertions.assertEquals(0, scania.getRampPos(), 0.01);
     }
 
 }

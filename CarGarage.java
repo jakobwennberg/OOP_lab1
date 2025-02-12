@@ -1,16 +1,15 @@
 import java.util.ArrayList;
 
-public class CarGarage<T extends Car> { // Specifikt vad T är bestäms då vi specifierar den statiska typen (???)
-                                    // för ett nytt garage. Till exempel Garage<Volvol240> volvoGarage = new Garage<>(5)
+public class CarGarage<T extends Car> {
     private final int maxCapacity;
-    private final ArrayList<T> cars; // Endast bilar av typen T.
+    private final ArrayList<T> cars;
 
     public CarGarage(int maxCapacity) {
         this.maxCapacity = maxCapacity;
         this.cars = new ArrayList<>();
     }
 
-    public void leaveCar(T car) {   // Klassens implementation gör så att fel biltyp aldrig kan lämnas in.
+    public void leaveCar(T car) {
         if (cars.size() >= maxCapacity) {
             throw new IllegalStateException("The garage is full.");
         }
