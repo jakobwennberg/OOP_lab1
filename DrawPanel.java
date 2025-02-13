@@ -1,56 +1,83 @@
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
-// This panel represents the animated part of the view with the car images.
+public class DrawPanel extends JPanel {
+    private ArrayList<BufferedImage> carImages;
+    private ArrayList<Point> carPoints;
+    private BufferedImage workshopImage;
+    private Point workshopPoint;
 
-public class DrawPanel extends JPanel{
+    // Dimensions for the workshop collision detection
+    private static final int WORKSHOP_WIDTH = 100;
+    private static final int WORKSHOP_HEIGHT = 100;
 
-    // Just a single image, TODO: Generalize
-    BufferedImage volvoImage;
-    // To keep track of a single car's position
-    Point volvoPoint = new Point();
-
-    BufferedImage volvoWorkshopImage;
-    Point volvoWorkshopPoint = new Point(300,300);
-
-    // TODO: Make this general for all cars
-    void moveit(int x, int y){
-        volvoPoint.x = x;
-        volvoPoint.y = y;
-    }
-
-    // Initializes the panel and reads the images
     public DrawPanel(int x, int y) {
         this.setDoubleBuffered(true);
         this.setPreferredSize(new Dimension(x, y));
         this.setBackground(Color.green);
-        // Print an error message in case file is not found with a try/catch block
-        try {
-            // You can remove the "pics" part if running outside of IntelliJ and
-            // everything is in the same main folder.
-            // volvoImage = ImageIO.read(new File("Volvo240.jpg"));
+        
+        // Initialize lists
+        carImages = new ArrayList<>();
+        carPoints = new ArrayList<>();
+        
+        // Initialize workshop
+        workshopPoint = new Point(0, 300);
 
-            // Rememember to rightclick src New -> Package -> name: pics -> MOVE *.jpg to pics.
-            // if you are starting in IntelliJ.
-            volvoImage = ImageIO.read(DrawPanel.class.getResourceAsStream("pics/Volvo240.jpg"));
-            volvoWorkshopImage = ImageIO.read(DrawPanel.class.getResourceAsStream("pics/VolvoBrand.jpg"));
-        } catch (IOException ex)
-        {
+        try {
+            // Load car images
+            carImages.add(ImageIO.read(DrawPanel.class.getResourceAsStream("pics/Volvo240.jpg")));
+            carImages.add(ImageIO.read(DrawPanel.class.getResourceAsStream("pics/Saab95.jpg")));
+            carImages.add(ImageIO.read(DrawPanel.class.getResourceAsStream("pics/Scania.jpg")));
+            
+            // Load workshop image
+            workshopImage = ImageIO.read(DrawPanel.class.getResourceAsStream("pics/VolvoBrand.jpg"));
+            
+            // Initialize points for each car
+            for (int i = 0; i < carImages.size(); i++) {
+                carPoints.add(new Point(0, i * 100));
+            }
+        } catch (IOException ex) {
             ex.printStackTrace();
         }
-
     }
 
-    // This method is called each time the panel updates/refreshes/repaints itself
-    // TODO: Change to suit your needs.
+    public void moveCar(double x, double y, int index) {
+        if (index >= 0 && index < carPoints.size()) {
+            Point p = carPoints.get(index);
+            p.x = (int) Math.round(x);
+            p.y = (int) Math.round(y);
+            
+            // Check for workshop collision (only for Volvo)
+            if (index == 0) { // Volvo is always first in our list
+                if (isCollidingWithWorkshop(p.x, p.y)) {
+                    // "Load" the Volvo into workshop by hiding it
+                    p.x = workshopPoint.x;
+                    p.y = workshopPoint.y;
+                }
+            }
+        }
+    }
+
+    private boolean isCollidingWithWorkshop(int carX, int carY) {
+        return carX >= workshopPoint.x && carX <= workshopPoint.x + WORKSHOP_WIDTH &&
+               carY >= workshopPoint.y && carY <= workshopPoint.y + WORKSHOP_HEIGHT;
+    }
+
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        g.drawImage(volvoImage, volvoPoint.x, volvoPoint.y, null); // see javadoc for more info on the parameters
-        g.drawImage(volvoWorkshopImage, volvoWorkshopPoint.x, volvoWorkshopPoint.y, null);
+        
+        // Draw workshop
+        g.drawImage(workshopImage, workshopPoint.x, workshopPoint.y, null);
+        
+        // Draw all cars
+        for (int i = 0; i < carImages.size(); i++) {
+            Point p = carPoints.get(i);
+            g.drawImage(carImages.get(i), p.x, p.y, null);
+        }
     }
 }
