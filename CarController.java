@@ -39,7 +39,15 @@ public class CarController {
             for (Car car : cars) {
                 double oldX = car.getX();
                 double oldY = car.getY();
-                
+
+                // Vi måste stoppa motorn på volvon ifall den är i workshop.
+                // Detta görs genon en ny getter i CarView. Den nya getter gör
+                // så att CarController inte behöver känna till drawPanel
+                // och isCollidingWithWorkshop förblir private.
+                if (cars.indexOf(car) == 0 && frame.drawPanel.checkWorkshop((int) oldX,(int) oldY)){
+                    car.stopEngine();
+                }
+
                 car.move();
                 
                 // Check boundaries and handle collisions

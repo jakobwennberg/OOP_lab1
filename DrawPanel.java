@@ -50,21 +50,30 @@ public class DrawPanel extends JPanel {
             Point p = carPoints.get(index);
             p.x = (int) Math.round(x);
             p.y = (int) Math.round(y);
-            
+
             // Check for workshop collision (only for Volvo)
             if (index == 0) { // Volvo is always first in our list
+                System.out.println(p.x);
+                System.out.println(p.y);
                 if (isCollidingWithWorkshop(p.x, p.y)) {
                     // "Load" the Volvo into workshop by hiding it
                     p.x = workshopPoint.x;
                     p.y = workshopPoint.y;
+
+
                 }
             }
         }
     }
 
     private boolean isCollidingWithWorkshop(int carX, int carY) {
+
         return carX >= workshopPoint.x && carX <= workshopPoint.x + WORKSHOP_WIDTH &&
                carY >= workshopPoint.y && carY <= workshopPoint.y + WORKSHOP_HEIGHT;
+    }
+
+    public boolean checkWorkshop(int x, int y){
+        return isCollidingWithWorkshop(x,y);
     }
 
     @Override
