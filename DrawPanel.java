@@ -53,8 +53,6 @@ public class DrawPanel extends JPanel {
 
             // Check for workshop collision (only for Volvo)
             if (index == 0) { // Volvo is always first in our list
-                System.out.println(p.x);
-                System.out.println(p.y);
                 if (isCollidingWithWorkshop(p.x, p.y)) {
                     // "Load" the Volvo into workshop by hiding it
                     p.x = workshopPoint.x;
