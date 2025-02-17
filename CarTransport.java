@@ -3,7 +3,7 @@ import java.util.ArrayDeque;
 import java.util.Deque;
 
 
-public class CarTransport extends Car {
+public class CarTransport extends Car implements Ramp<Boolean> {
     private boolean rampUp;
     private Deque<Car> cars;
     // lenOfLoadedCars and MAX_LENGTH means that the deck can be full even though MAX_CARS is not yet reached
@@ -21,10 +21,6 @@ public class CarTransport extends Car {
         cars = new ArrayDeque<>();
     }
 
-    public boolean getRampUp() {
-        return rampUp;
-    }
-
     public Deque<Car> getCarsList() {
         return cars;
     }
@@ -33,6 +29,12 @@ public class CarTransport extends Car {
         return cars.size();
     }
 
+    @Override
+    public Boolean getRampPos() {
+        return rampUp;
+    }
+
+    @Override
     public void putRampDown() {
         if (getCurrentSpeed() == 0) {
             rampUp = false;
@@ -41,6 +43,7 @@ public class CarTransport extends Car {
         }
     }
 
+    @Override
     public void putRampUp() {
         rampUp = true;
     }
@@ -52,7 +55,7 @@ public class CarTransport extends Car {
     }
 
     public void loadCar(Car car) {
-        if (!rampUp && cars.size() < MAX_CARS && getCurrentSpeed() == 0 && car.getCurrentSpeed() == 0 && !cars.contains(car) && !(car instanceof CarTransport) && isNearby(car) && lenOfLoadedCars <= MAX_LENGTH) {
+        if (!rampUp && cars.size() < MAX_CARS && getCurrentSpeed() == 0 && car.getCurrentSpeed() == 0 && !cars.contains(car) && !(car instanceof CarTransport) && isNearby(car) && lenOfLoadedCars + car.getLength() <= MAX_LENGTH) {
             lenOfLoadedCars += car.getLength();
             cars.push(car);
             car.setX(getX());  // Set initial position
