@@ -132,16 +132,16 @@ public class CarController {
 
     void liftBed() {
         for (Car car : cars) {
-            if (car instanceof Scania) {
-                ((Scania) car).putRampUp(70);
+            if (car instanceof Ramp<?>) {
+                ((Scania) car).putRampUp();
             }
         }
     }
 
     void lowerBed() {
         for (Car car : cars) {
-            if (car instanceof Scania) {
-                ((Scania) car).putRampDown(70);
+            if (car instanceof Ramp<?>) {
+                ((Scania) car).putRampDown();
             }
         }
     }
