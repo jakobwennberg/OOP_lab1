@@ -44,16 +44,16 @@ public class ButtonFunctions {
 
     public void turboOn() {
         for (Car car : cars) {
-            if (car instanceof Saab95) {
-                ((Saab95) car).setTurboOn();
+            if (car instanceof Turbo) {
+                ((Turbo) car).setTurboOn();
             }
         }
     }
 
     public void turboOff() {
         for (Car car : cars) {
-            if (car instanceof Saab95) {
-                ((Saab95) car).setTurboOff();
+            if (car instanceof Turbo) {
+                ((Turbo) car).setTurboOff();
             }
         }
     }
@@ -61,7 +61,7 @@ public class ButtonFunctions {
     public void liftBed() {
         for (Car car : cars) {
             if (car instanceof Ramp<?>) {
-                ((Scania) car).putRampUp();
+                ((Ramp<?>) car).putRampUp();
             }
         }
     }
@@ -69,7 +69,7 @@ public class ButtonFunctions {
     public void lowerBed() {
         for (Car car : cars) {
             if (car instanceof Ramp<?>) {
-                ((Scania) car).putRampDown();
+                ((Ramp<?>) car).putRampDown();
             }
         }
     }
