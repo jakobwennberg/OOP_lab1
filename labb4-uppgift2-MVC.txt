@@ -5,7 +5,6 @@ Hade kunnat använda facade pattern.
 
 
 *Vilka av dessa brister åtgärdade ni med er nya design från del 3? Hur då? Vilka brister åtgärdade ni inte?
-
 - Tydligare och bättre Observer pattern. Fixat så lägre coupling + högre cohesion. Separerade knapparna till
  egen klass, samt buttonfunctions. Inte åtgärdat så mycket låg coupling + hög cohesion som möjligt. (Helt
  separerbara M,V,C)
