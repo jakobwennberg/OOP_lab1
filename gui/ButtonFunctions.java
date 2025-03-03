@@ -15,7 +15,7 @@ public class ButtonFunctions {
     public ButtonFunctions(ArrayList<Car> cars) {
         this.cars = cars;
     }
-    
+
     public void gas(int amount) {
         double gas = ((double) amount) / 100;
         for (Car car : cars) {
