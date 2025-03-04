@@ -20,8 +20,8 @@ public class CarFactory {
         return new CarTransport();
     }
     
-    public static ArrayList<Car> createInitialCars() {
-        ArrayList<Car> cars = new ArrayList<>();
+    public static ArrayList<ObservingCar> createInitialCars() {
+        ArrayList<ObservingCar> cars = new ArrayList<>();
         cars.add(createVolvo240());  // Y = 0
         cars.add(createSaab95());    // Y = 100
         cars.add(createScania());    // Y = 200

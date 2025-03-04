@@ -1,6 +1,6 @@
 package gui;
 
-import car.Car;
+import car.ObservingCar;
 
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
@@ -12,13 +12,10 @@ public class ControllerPanel extends JPanel {
     private final ButtonFunctions buttonFunctions;
     private int gasAmount = 0;
 
-    public ControllerPanel (int X, int Y, ArrayList<Car> cars){
+    public ControllerPanel (int X, int Y, ArrayList<ObservingCar> cars){
         Buttons buttons = new Buttons();
-        this.buttonFunctions = new ButtonFunctions();
-        for (Car car : cars){
-            buttonFunctions.addObserver(car);
+        this.buttonFunctions = new ButtonFunctions(cars);
 
-        }
 
         // Configure gas spinner
         SpinnerModel spinnerModel = new SpinnerNumberModel(0, 0, 100, 1);

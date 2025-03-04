@@ -1,6 +1,7 @@
 package gui;
 
-import car.*;
+
+import car.ObservingCar;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -93,15 +94,15 @@ public class DrawPanel extends JPanel{
 
     
      // Updates the car images list to match the current number of cars
-    public void updateCars(ArrayList<Car> cars) {
+    public void updateCars(ArrayList<ObservingCar> cars) {
         // Ensure we have enough images and points for all cars
         while (carImages.size() < cars.size()) {
             // Determine which image to use based on car type
-            if (cars.get(carImages.size()) instanceof Volvo240) {
+            if (cars.get(carImages.size()).getCarType().equals("Volvo240")) {
                 carImages.add(volvoImage);
-            } else if (cars.get(carImages.size()) instanceof Saab95) {
+            } else if (cars.get(carImages.size()).getCarType().equals("Saab95")) {
                 carImages.add(saabImage);
-            } else if (cars.get(carImages.size()) instanceof Scania) {
+            } else if (cars.get(carImages.size()).getCarType().equals("Scania")) {
                 carImages.add(scaniaImage);
             } else {
                 carImages.add(transportImage);

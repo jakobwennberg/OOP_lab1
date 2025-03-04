@@ -4,10 +4,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
-import car.Car;
+import car.ObservingCar;
 
 
- // Main frame for the car simulation GUI
+// Main frame for the car simulation GUI
  // Contains all panels and displays the cars
  
 public class DrawFrame extends JFrame {
@@ -18,7 +18,7 @@ public class DrawFrame extends JFrame {
     public DrawPanel drawPanel;
 
 
-    public DrawFrame(String frameName, ArrayList<Car> cars) {
+    public DrawFrame(String frameName, ArrayList<ObservingCar> cars) {
         this.drawPanel = new DrawPanel(X, Y-240);
         this.controllerPanel = new ControllerPanel(X, Y, cars);
         initComponents(frameName);

@@ -13,6 +13,11 @@ public class Scania extends Car implements Ramp<Double> {
     }
 
     @Override
+    public String getCarType(){
+        return "Scania";
+    }
+
+    @Override
     public Double getRampPos() {
         return rampBody;
     }

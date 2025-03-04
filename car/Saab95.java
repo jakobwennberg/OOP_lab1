@@ -13,6 +13,11 @@ public class Saab95 extends Car implements Turbo {
     }
 
     @Override
+    public String getCarType(){
+        return "Saab95";
+    }
+
+    @Override
     public boolean getTruboStatus() {
         return this.turboOn;
     }

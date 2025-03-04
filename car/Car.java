@@ -2,7 +2,7 @@ package car;
 import java.awt.*;
 
 
-public abstract class Car implements Movable, ButtonObserver {
+public abstract class Car implements Movable, ObservingCar {
     private final String modelName;
     private final int nrDoors;
     private final double enginePower;

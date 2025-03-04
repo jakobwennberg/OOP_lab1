@@ -11,6 +11,11 @@ public class Volvo240 extends Car {
         super(4, 100, Color.BLACK, "Volvo240", 3.0);
     }
 
+    @Override
+    public String getCarType(){
+        return "Volvo240";
+    }
+
     // Override speedFactor from parent
     @Override
     protected double speedFactor() {

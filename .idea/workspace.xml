@@ -5,42 +5,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d40ea671-8e4d-4cf7-9e0f-c294ca71ceba" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/junit_jupiter.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/junit_platform_console_standalone_1_11_5.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/junit_platform_console_standalone_1_11_5.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/4.refaktoriseringsplan.txt" beforeDir="false" afterPath="$PROJECT_DIR$/4.refaktoriseringsplan.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OOP_lab1.iml" beforeDir="false" afterPath="$PROJECT_DIR$/OOP_lab1.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/car/ButtonObserver.java" beforeDir="false" afterPath="$PROJECT_DIR$/car/ObservingCar.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/car/Car.java" beforeDir="false" afterPath="$PROJECT_DIR$/car/Car.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/car/CarFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/car/CarFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/car/Saab95.java" beforeDir="false" afterPath="$PROJECT_DIR$/car/Saab95.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/car/Scania.java" beforeDir="false" afterPath="$PROJECT_DIR$/car/Scania.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/car/Volvo240.java" beforeDir="false" afterPath="$PROJECT_DIR$/car/Volvo240.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gui/ButtonFunctions.java" beforeDir="false" afterPath="$PROJECT_DIR$/gui/ButtonFunctions.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gui/ControllerPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/gui/ControllerPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gui/DrawFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/gui/DrawFrame.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gui/DrawPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/gui/DrawPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/OOP_lab1/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/OOP_lab1/.idea/libraries/junit_jupiter.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/OOP_lab1/.idea/libraries/junit_platform_console_standalone_1_11_5.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP_lab1/.idea/libraries/junit_platform_console_standalone_1_11_5.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/OOP_lab1/.idea/misc(1).xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/OOP_lab1/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP_lab1/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/OOP_lab1/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP_lab1/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/OOP_lab1/4.refaktoriseringsplan.txt" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP_lab1/4.refaktoriseringsplan.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/OOP_lab1/OOP_lab1.iml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP_lab1/OOP_lab1.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gui/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/gui/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gui/TimerListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/gui/TimerListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/OOP_lab1/car/ButtonObserver.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/OOP_lab1/car/Car.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP_lab1/car/Car.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/OOP_lab1/car/CarFactory.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP_lab1/car/CarFactory.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/OOP_lab1/car/CarGarage.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP_lab1/car/CarGarage.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/OOP_lab1/car/CarTransport.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP_lab1/car/CarTransport.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/OOP_lab1/car/Movable.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP_lab1/car/Movable.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/OOP_lab1/car/Ramp.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP_lab1/car/Ramp.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/OOP_lab1/car/Saab95.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP_lab1/car/Saab95.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/OOP_lab1/car/Scania.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP_lab1/car/Scania.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/OOP_lab1/car/Turbo.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP_lab1/car/Turbo.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/OOP_lab1/car/Volvo240.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP_lab1/car/Volvo240.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/OOP_lab1/car/test/CarGarageTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP_lab1/car/test/CarGarageTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/OOP_lab1/car/test/CarTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP_lab1/car/test/CarTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/OOP_lab1/car/test/CarTransportTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP_lab1/car/test/CarTransportTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/OOP_lab1/car/test/RampTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP_lab1/car/test/RampTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/OOP_lab1/car/test/ScaniaTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP_lab1/car/test/ScaniaTest.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/OOP_lab1/gui/ButtonFunctions.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP_lab1/gui/ButtonFunctions.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/OOP_lab1/gui/Buttons.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP_lab1/gui/Buttons.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/OOP_lab1/gui/ControllerPanel$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP_lab1/gui/ControllerPanel$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/OOP_lab1/gui/ControllerPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP_lab1/gui/ControllerPanel.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/OOP_lab1/gui/DrawFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP_lab1/gui/DrawFrame.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/OOP_lab1/gui/DrawPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP_lab1/gui/DrawPanel.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/OOP_lab1/gui/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP_lab1/gui/Main.class" afterDir="false" />
@@ -75,7 +58,7 @@
     "Application.Main.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "master",
+    "git-widget-placeholder": "gren2",
     "kotlin-language-version-configured": "true"
   }
 }]]></component>

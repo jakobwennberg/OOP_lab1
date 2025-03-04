@@ -1,6 +1,10 @@
 package gui;
 
-import car.*;
+import car.CarFactory;
+import car.ObservingCar;
+import car.Ramp;
+import car.Turbo;
+
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -8,49 +12,42 @@ import java.util.Random;
 // Class responsible for handling all button actions in the GUI
  
 public class ButtonFunctions {
-    private ArrayList<ButtonObserver> ObservingCars = new ArrayList<>();
+    private ArrayList<ObservingCar> ObservingCars = new ArrayList<>();
     private static final int MAX_CARS = 10;
     private final Random random = new Random();
     
-    public ButtonFunctions() {
-    }
-
-    public void addObserver(ButtonObserver car){
-        ObservingCars.add(car);
-    }
-
-    public void removeObserver(ButtonObserver car){
-        ObservingCars.remove(car);
+    public ButtonFunctions(ArrayList<ObservingCar> cars) {
+        this.ObservingCars = cars;
     }
 
     public void gas(int amount) {
         double gas = ((double) amount) / 100;
-        for (ButtonObserver car : ObservingCars) {
+        for (ObservingCar car : ObservingCars) {
             car.gas(gas);
         }
     }
 
     public void brake(int amount) {
         double brake = ((double) amount) / 100;
-        for (ButtonObserver car : ObservingCars) {
+        for (ObservingCar car : ObservingCars) {
             car.brake(brake);
         }
     }
 
     public void startAllCars() {
-        for (ButtonObserver car : ObservingCars) {
+        for (ObservingCar car : ObservingCars) {
             car.startEngine();
         }
     }
 
     public void stopAllCars() {
-        for (ButtonObserver car : ObservingCars) {
+        for (ObservingCar car : ObservingCars) {
             car.stopEngine();
         }
     }
 
     public void turboOn() {
-        for (ButtonObserver car : ObservingCars) {
+        for (ObservingCar car : ObservingCars) {
             if (car instanceof Turbo) {
                 ((Turbo) car).setTurboOn();
             }
@@ -58,7 +55,7 @@ public class ButtonFunctions {
     }
 
     public void turboOff() {
-        for (ButtonObserver car : ObservingCars) {
+        for (ObservingCar car : ObservingCars) {
             if (car instanceof Turbo) {
                 ((Turbo) car).setTurboOff();
             }
@@ -66,7 +63,7 @@ public class ButtonFunctions {
     }
 
     public void liftBed() {
-        for (ButtonObserver car : ObservingCars) {
+        for (ObservingCar car : ObservingCars) {
             if (car instanceof Ramp<?>) {
                 ((Ramp<?>) car).putRampUp();
             }
@@ -74,7 +71,7 @@ public class ButtonFunctions {
     }
 
     public void lowerBed() {
-        for (ButtonObserver car : ObservingCars) {
+        for (ObservingCar car : ObservingCars) {
             if (car instanceof Ramp<?>) {
                 ((Ramp<?>) car).putRampDown();
             }
@@ -86,7 +83,7 @@ public class ButtonFunctions {
      
     public void addCar() {
         if (ObservingCars.size() < MAX_CARS) {
-            ButtonObserver newCar;
+            ObservingCar newCar;
             int type = random.nextInt(4);
 
             switch (type) {

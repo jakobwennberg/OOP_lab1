@@ -31,6 +31,12 @@ public class CarTransport extends Car implements Ramp<Boolean> {
         return cars.size();
     }
 
+
+    @Override
+    public String getCarType(){
+        return "CarTransport";
+    }
+
     @Override
     public Boolean getRampPos() {
         return rampUp;

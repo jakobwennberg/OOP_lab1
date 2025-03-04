@@ -1,6 +1,6 @@
 package gui;
 
-import car.Car;
+import car.ObservingCar;
 import car.CarFactory;
 
 import javax.swing.Timer;
@@ -15,7 +15,7 @@ public class Main {
     public static void main(String[] args) {
         // Create cars using the CarFactory
         // These car objects are the "Model" in MVC 
-        ArrayList<Car> cars = CarFactory.createInitialCars();
+        ArrayList<ObservingCar> cars = CarFactory.createInitialCars();
         
         // Create the main frame
         // "View" in MVC

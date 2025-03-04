@@ -1,6 +1,6 @@
 package gui;
 
-import car.Car;
+import car.ObservingCar;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,21 +10,21 @@ import java.util.ArrayList;
 // Timer listener that handles car movement and collision detection
  
 public class TimerListener implements ActionListener {
-    private final ArrayList<Car> cars;
+    private final ArrayList<ObservingCar> cars;
     private final DrawFrame frame;
     
     // Boundaries for car movement
     public static final int X_BOUNDARY = 700;
     public static final int Y_BOUNDARY = 500;
 
-    public TimerListener(ArrayList<Car> cars, DrawFrame frame) {
+    public TimerListener(ArrayList<ObservingCar> cars, DrawFrame frame) {
         this.cars = cars;
         this.frame = frame;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        for (Car car : cars) {
+        for (ObservingCar car : cars) {
             double oldX = car.getX();
             double oldY = car.getY();
 
