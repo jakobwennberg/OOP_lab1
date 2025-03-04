@@ -1,0 +1,14 @@
+*Vilka avvikelser från MVC-idealet kan ni identifiera i det ursprungliga användargränssnittet? Vad borde ha
+ gjorts smartare, dummare eller tunnare?
+- Constructor pattern. Observer pattern. Just nu high coupling + låg cohesion (Oklart vad som gör vad). 
+Hade kunnat använda facade pattern.
+
+
+*Vilka av dessa brister åtgärdade ni med er nya design från del 3? Hur då? Vilka brister åtgärdade ni inte?
+- Tydligare och bättre Observer pattern. Fixat så lägre coupling + högre cohesion. Separerade knapparna till
+ egen klass, samt buttonfunctions. Inte åtgärdat så mycket låg coupling + hög cohesion som möjligt. (Helt
+ separerbara M,V,C)
+
+*Rita ett nytt UML-diagram som beskriver en förbättrad design med avseende på MVC.
+- Module pattern (mer uppdelat i olika paket för MVC) 
+- Vill ändra till UML: DrawFrame har controller aspektet som en egen klass.
