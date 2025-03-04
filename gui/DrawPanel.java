@@ -12,7 +12,7 @@ import javax.swing.*;
 /**
  * Panel that handles the visual representation of cars and the workshop
  */
-public class DrawPanel extends JPanel {
+public class DrawPanel extends JPanel{
     private ArrayList<BufferedImage> carImages;
     private ArrayList<Point> carPoints;
     private BufferedImage workshopImage;
@@ -93,7 +93,6 @@ public class DrawPanel extends JPanel {
 
     
      // Updates the car images list to match the current number of cars
-     
     public void updateCars(ArrayList<Car> cars) {
         // Ensure we have enough images and points for all cars
         while (carImages.size() < cars.size()) {

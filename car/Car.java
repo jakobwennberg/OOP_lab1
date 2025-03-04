@@ -2,7 +2,7 @@ package car;
 import java.awt.*;
 
 
-public abstract class Car implements Movable {
+public abstract class Car implements Movable, ButtonObserver {
     private final String modelName;
     private final int nrDoors;
     private final double enginePower;
@@ -24,6 +24,7 @@ public abstract class Car implements Movable {
     }
 
     // Getters
+
     public double getX() {
         return this.x;
     }
@@ -60,26 +61,29 @@ public abstract class Car implements Movable {
         return this.length;
     }
 
+    @Override
     public void startEngine() {
         if (this.currentSpeed == 0) {
             this.currentSpeed = 0.1;
         }
     }
 
-
+    @Override
     public void stopEngine() {
         this.currentSpeed = 0;
     }
 
+    @Override
     public void setX(double x) {
         this.x = x;
     }
 
+    @Override
     public void setY(double y) {
         this.y = y;
     }
 
-
+    @Override
     public void gas(double amount) {
         if (amount < 0 || amount > 1) {
             throw new IllegalArgumentException("Amount must be in [0, 1]");
@@ -88,7 +92,7 @@ public abstract class Car implements Movable {
         this.currentSpeed = Math.min(this.getCurrentSpeed() + this.speedFactor() * amount, this.getEnginePower());
     }
 
-
+    @Override
     public void brake(double amount) {
         if (amount < 0 || amount > 1) {
             throw new IllegalArgumentException("Amount must be in [0, 1]");

@@ -14,7 +14,11 @@ public class ControllerPanel extends JPanel {
 
     public ControllerPanel (int X, int Y, ArrayList<Car> cars){
         Buttons buttons = new Buttons();
-        this.buttonFunctions = new ButtonFunctions(cars);
+        this.buttonFunctions = new ButtonFunctions();
+        for (Car car : cars){
+            buttonFunctions.addObserver(car);
+
+        }
 
         // Configure gas spinner
         SpinnerModel spinnerModel = new SpinnerNumberModel(0, 0, 100, 1);

@@ -8,42 +8,49 @@ import java.util.Random;
 // Class responsible for handling all button actions in the GUI
  
 public class ButtonFunctions {
-    private ArrayList<Car> cars;
+    private ArrayList<ButtonObserver> ObservingCars = new ArrayList<>();
     private static final int MAX_CARS = 10;
     private final Random random = new Random();
     
-    public ButtonFunctions(ArrayList<Car> cars) {
-        this.cars = cars;
+    public ButtonFunctions() {
+    }
+
+    public void addObserver(ButtonObserver car){
+        ObservingCars.add(car);
+    }
+
+    public void removeObserver(ButtonObserver car){
+        ObservingCars.remove(car);
     }
 
     public void gas(int amount) {
         double gas = ((double) amount) / 100;
-        for (Car car : cars) {
+        for (ButtonObserver car : ObservingCars) {
             car.gas(gas);
         }
     }
 
     public void brake(int amount) {
         double brake = ((double) amount) / 100;
-        for (Car car : cars) {
+        for (ButtonObserver car : ObservingCars) {
             car.brake(brake);
         }
     }
 
     public void startAllCars() {
-        for (Car car : cars) {
+        for (ButtonObserver car : ObservingCars) {
             car.startEngine();
         }
     }
 
     public void stopAllCars() {
-        for (Car car : cars) {
+        for (ButtonObserver car : ObservingCars) {
             car.stopEngine();
         }
     }
 
     public void turboOn() {
-        for (Car car : cars) {
+        for (ButtonObserver car : ObservingCars) {
             if (car instanceof Turbo) {
                 ((Turbo) car).setTurboOn();
             }
@@ -51,7 +58,7 @@ public class ButtonFunctions {
     }
 
     public void turboOff() {
-        for (Car car : cars) {
+        for (ButtonObserver car : ObservingCars) {
             if (car instanceof Turbo) {
                 ((Turbo) car).setTurboOff();
             }
@@ -59,7 +66,7 @@ public class ButtonFunctions {
     }
 
     public void liftBed() {
-        for (Car car : cars) {
+        for (ButtonObserver car : ObservingCars) {
             if (car instanceof Ramp<?>) {
                 ((Ramp<?>) car).putRampUp();
             }
@@ -67,7 +74,7 @@ public class ButtonFunctions {
     }
 
     public void lowerBed() {
-        for (Car car : cars) {
+        for (ButtonObserver car : ObservingCars) {
             if (car instanceof Ramp<?>) {
                 ((Ramp<?>) car).putRampDown();
             }
@@ -78,10 +85,10 @@ public class ButtonFunctions {
      // Adds a random car to the simulation if the maximum car limit hasn't been reached
      
     public void addCar() {
-        if (cars.size() < MAX_CARS) {
-            Car newCar;
+        if (ObservingCars.size() < MAX_CARS) {
+            ButtonObserver newCar;
             int type = random.nextInt(4);
-            
+
             switch (type) {
                 case 0:
                     newCar = CarFactory.createVolvo240();
@@ -98,18 +105,19 @@ public class ButtonFunctions {
             }
             
             // Set initial position
-            newCar.setY(cars.size() * 70 % 400); // Spread cars vertically
+            newCar.setY(ObservingCars.size() * 70 % 400); // Spread ObservingCars vertically
             
-            cars.add(newCar);
+            ObservingCars.add(newCar);
+            System.out.println(ObservingCars);
         }
     }
     
     
-     // Removes the last car from the simulation if there are any cars
+     // Removes the last car from the simulation if there are any ObservingCars
      
     public void removeCar() {
-        if (!cars.isEmpty()) {
-            cars.remove(cars.size() - 1);
+        if (!ObservingCars.isEmpty()) {
+            ObservingCars.remove(ObservingCars.size() - 1);
         }
     }
 }

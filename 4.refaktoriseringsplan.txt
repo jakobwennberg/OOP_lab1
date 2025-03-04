@@ -1,12 +1,20 @@
-1. Skapa en ny klass car.CarFactory genom att använda Factory Method (Design Pattern). Samtidigt bryt ut alla funktioner som används som ActionListener i gui.CarView (de ligger i gui.CarController)
-till en egen klass gui.ButtonFunctions. Dessutom Bryt ut alla JButtons från gui.CarView till sin egna nya klass gui.Buttons. Samtidigt skapa en ny klass gui. gui.DrawFrame som kommer innehålla alla
+1. Skapa en ny klass car.CarFactory genom att använda Factory Method (Design Pattern).
+Samtidigt bryt ut alla funktioner som används som ActionListener i gui.CarView
+(de ligger i gui.CarController) till en egen klass gui.ButtonFunctions.
+Dessutom Bryt ut alla JButtons från gui.
+CarView till sin egna nya klass gui.Buttons. Samtidigt skapa en ny klass gui.
+gui.DrawFrame som kommer innehålla alla
 JPanels.
 
-2. Bryt ut main och TimeListener från gui.CarController till två egna klasser, ändra så att när gui.TimerListener skapas i gui.Main så tar den emot gui.Main's ArrayList<Car>. Klassen gui.DrawFrame
-ska innehålla klassen gui.DrawPanel (extends JPanel) som ansvarar för "rit-ytan", denna ska användas för att uppdatera det som ska visas grafiskt. Klassen gui.TimeListener ska innehålla en
-gui.DrawFrame för att kunna hantera GUI'n.
+2. Bryt ut main och TimeListener från gui.CarController till två egna klasser, ändra så att när gui.
+TimerListener skapas i gui.Main så tar den emot gui.Main's ArrayList<Car>. Klassen gui.DrawFrame
+ska innehålla klassen gui.DrawPanel (extends JPanel) som ansvarar för "rit-ytan",
+denna ska användas för att uppdatera det som ska visas grafiskt.
+Klassen gui.TimeListener ska innehålla en gui.DrawFrame för att kunna hantera GUI'n.
 
-3. Main ska använda car.CarFactory för att skapa en ArrayList<Car> med alla bilar som ska finnas. gui.Main ska ha en Timer där gui.TimerListener ska vara ett av argumenten när denna skapas.
-Samtidigt ska gui.CarController raderas (om all funktionalitet från den korrekt införts i TimeListener, main och buttons) samt gui.CarVieW ska raderas (om all funktionalitet från den korrekt
+3. Main ska använda car.CarFactory för att skapa en ArrayList<Car> med alla bilar som ska finnas.
+gui.Main ska ha en Timer där gui.TimerListener ska vara ett av argumenten när denna skapas.
+Samtidigt ska gui.CarController raderas (om all funktionalitet från den korrekt införts i TimeListener, main och buttons)
+samt gui.CarVieW ska raderas (om all funktionalitet från den korrekt
 införts i DrawFrame, DrawPanel och ButtonFunctions)
 
