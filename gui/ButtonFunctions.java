@@ -1,6 +1,7 @@
 package gui;
 
-import car.*;
+import car.Ramp;
+import car.Turbo;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -8,97 +9,87 @@ import java.util.Random;
 // Class responsible for handling all button actions in the GUI
  
 public class ButtonFunctions {
-    private ArrayList<Car> cars;
+    private final ArrayList<CarWrapper> cars;
     private static final int MAX_CARS = 10;
     private final Random random = new Random();
     
-    public ButtonFunctions(ArrayList<Car> cars) {
-        this.cars = cars;
+    public ButtonFunctions(ArrayList<CarWrapper> wCars) {
+        this.cars = wCars;
     }
 
     public void gas(int amount) {
         double gas = ((double) amount) / 100;
-        for (Car car : cars) {
-            car.gas(gas);
+        for (CarWrapper car : cars) {
+            car.getCar().gas(gas);
         }
     }
 
     public void brake(int amount) {
         double brake = ((double) amount) / 100;
-        for (Car car : cars) {
-            car.brake(brake);
+        for (CarWrapper car : cars) {
+            car.getCar().brake(brake);
         }
     }
 
     public void startAllCars() {
-        for (Car car : cars) {
-            car.startEngine();
+        for (CarWrapper car : cars) {
+            car.getCar().startEngine();
         }
     }
 
     public void stopAllCars() {
-        for (Car car : cars) {
-            car.stopEngine();
+        for (CarWrapper car : cars) {
+            car.getCar().stopEngine();
         }
     }
 
     public void turboOn() {
-        for (Car car : cars) {
-            if (car instanceof Turbo) {
-                ((Turbo) car).setTurboOn();
+        for (CarWrapper car : cars) {
+            if (car.getCar() instanceof Turbo) {
+                ((Turbo) car.getCar()).setTurboOn();
             }
         }
     }
 
     public void turboOff() {
-        for (Car car : cars) {
-            if (car instanceof Turbo) {
-                ((Turbo) car).setTurboOff();
+        for (CarWrapper car : cars) {
+            if (car.getCar() instanceof Turbo) {
+                ((Turbo) car.getCar()).setTurboOff();
             }
         }
     }
 
     public void liftBed() {
-        for (Car car : cars) {
-            if (car instanceof Ramp<?>) {
-                ((Ramp<?>) car).putRampUp();
+        for (CarWrapper car : cars) {
+            if (car.getCar() instanceof Ramp<?>) {
+                ((Ramp<?>) car.getCar()).putRampUp();
             }
         }
     }
 
     public void lowerBed() {
-        for (Car car : cars) {
-            if (car instanceof Ramp<?>) {
-                ((Ramp<?>) car).putRampDown();
+        for (CarWrapper car : cars) {
+            if (car.getCar() instanceof Ramp<?>) {
+                ((Ramp<?>) car.getCar()).putRampDown();
             }
         }
     }
-    
-    
+
      // Adds a random car to the simulation if the maximum car limit hasn't been reached
-     
     public void addCar() {
         if (cars.size() < MAX_CARS) {
-            Car newCar;
-            int type = random.nextInt(4);
-            
-            switch (type) {
-                case 0:
-                    newCar = CarFactory.createVolvo240();
-                    break;
-                case 1:
-                    newCar = CarFactory.createSaab95();
-                    break;
-                case 2:
-                    newCar = CarFactory.createScania();
-                    break;
-                default:
-                    newCar = CarFactory.createCarTransport();
-                    break;
-            }
-            
+            CarWrapper newCar;
+            int type = random.nextInt(3);
+
+            newCar = switch (type) {
+                case 0 -> CarWrapperFactory.createVolvo240(0, 0);
+                case 1 -> CarWrapperFactory.createSaab95(0, 0);
+                default -> CarWrapperFactory.createScania(0, 0);
+                //default -> CarWrapperFactory.createCarTransport(0, 0);
+            };
+
             // Set initial position
-            newCar.setY(cars.size() * 70 % 400); // Spread cars vertically
+            newCar.getCar().setY(cars.size() * 70 % 400); // Spread cars vertically
             
             cars.add(newCar);
         }
@@ -106,10 +97,9 @@ public class ButtonFunctions {
     
     
      // Removes the last car from the simulation if there are any cars
-     
     public void removeCar() {
         if (!cars.isEmpty()) {
-            cars.remove(cars.size() - 1);
+            cars.removeLast();
         }
     }
 }

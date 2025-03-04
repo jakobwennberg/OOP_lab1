@@ -1,7 +1,5 @@
 package gui;
 
-import car.Car;
-
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -9,21 +7,16 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class ControllerPanel extends JPanel {
-    private final ButtonFunctions buttonFunctions;
     private int gasAmount = 0;
 
-    public ControllerPanel (int X, int Y, ArrayList<Car> cars){
+    public ControllerPanel (int X, int Y, ArrayList<CarWrapper> cars){
         Buttons buttons = new Buttons();
-        this.buttonFunctions = new ButtonFunctions(cars);
+        ButtonFunctions buttonFunctions = new ButtonFunctions(cars);
 
         // Configure gas spinner
         SpinnerModel spinnerModel = new SpinnerNumberModel(0, 0, 100, 1);
         JSpinner gasSpinner = new JSpinner(spinnerModel);
-        gasSpinner.addChangeListener(new ChangeListener() {
-            public void stateChanged(ChangeEvent e) {
-                gasAmount = (int) ((JSpinner)e.getSource()).getValue();
-            }
-        });
+        gasSpinner.addChangeListener(e -> gasAmount = (int) ((JSpinner)e.getSource()).getValue());
 
         // Set up gas panel
         JPanel gasPanel = new JPanel();
